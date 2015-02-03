@@ -1,0 +1,63 @@
+<h1>Listing credit_card_charges</h1>
+<div class="panel panel-default">
+  <h1>Failed Charges</h1>
+  <% @customers.each do |customer| %>
+    <dl class="dl-horizontal failed-charges">
+      <dt><h4>Name:</h4></dt>
+      <dd><h4><%= customer.first_name %> <%= customer.last_name %></h4></dd>
+      <% customer.credit_card_charges.each do |credit_card_charge| %>
+        <% if credit_card_charge.paid != true %>
+          <dt>Amount Charged:</dt>
+          <dd>$<%= credit_card_charge.amount %></dd>
+          <dt>Charge Date:</dt>
+          <dd><%= credit_card_charge.created %></dd>
+        <% end %>
+      <% end %>
+    </dl>
+  <% end %>
+</div>
+
+<div class="panel panel-default">
+  <h1>Disputed Charges</h1>
+  <% @customers.each do |customer| %>
+    <dl class="dl-horizontal disputed-charges">
+      <dt><h4>Name:</h4></dt>
+      <dd><h4><%= customer.first_name %> <%= customer.last_name %></h4></dd>
+      <% customer.credit_card_charges.each do |credit_card_charge| %>
+        <% if credit_card_charge.disputed? %>
+          <dt>Amount Charged:</dt>
+          <dd>$<%= credit_card_charge.amount %></dd>
+          <dt>Charge Date:</dt>
+          <dd><%= credit_card_charge.created %></dd>
+        <% end %>
+      <% end %>
+    </dl>
+  <% end %>
+</div>
+
+<div class="panel panel-default">
+  <h1>Successful Charges</h1>
+  <% @customers.each do |customer| %>
+    <dl class="dl-horizontal">
+      <dt><h4>Name:</h4></dt>
+      <dd><h4><%= customer.first_name %> <%= customer.last_name %></h4></dd>
+      <% customer.credit_card_charges.each do |credit_card_charge| %>
+        <% if credit_card_charge.paid? %>
+          <dt>Amount Charged:</dt>
+          <dd>$<%= credit_card_charge.amount %></dd>
+          <dt>Charge Date:</dt>
+          <dd><%= credit_card_charge.created %></dd>
+          <dt>Currency</dt>
+          <dd><%= credit_card_charge.currency %></dd>
+          <dd><%= link_to 'Show', credit_card_charge %></dd>
+          <dd><%= link_to 'Destroy', credit_card_charge, method: :delete, data: { confirm: 'Are you sure?' } %></dd>
+        <% end %>
+      <% end %>
+    </dl>
+  <% end %>
+</div>
+
+
+<br>
+
+<%= link_to 'New Credit card charge', new_credit_card_charge_path %>
