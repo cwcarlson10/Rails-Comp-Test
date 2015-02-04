@@ -6,7 +6,7 @@
       <dt><h4>Name:</h4></dt>
       <dd><h4><%= customer.first_name %> <%= customer.last_name %></h4></dd>
       <% customer.credit_card_charges.each do |credit_card_charge| %>
-        <% if credit_card_charge.paid != true %>
+        <% if credit_card_charge.paid == false %>
           <dt>Amount Charged:</dt>
           <dd>$<%= credit_card_charge.amount %></dd>
           <dt>Charge Date:</dt>
