@@ -6,11 +6,11 @@
       <dt><h4>Name:</h4></dt>
       <dd><h4><%= customer.first_name %> <%= customer.last_name %></h4></dd>
       <% customer.credit_card_charges.each do |credit_card_charge| %>
-        <% if credit_card_charge.paid == false %>
+        <% if credit_card_charge.paid = true %>
           <dt>Amount Charged:</dt>
-          <dd>$<%= credit_card_charge.amount %></dd>
+          <dd><%= number_to_currency(credit_card_charge.amount) %></dd>
           <dt>Charge Date:</dt>
-          <dd><%= credit_card_charge.created %></dd>
+          <dd><%= credit_card_charge.created.strftime('%m/%d/%Y %H:%M') %></dd>
         <% end %>
       <% end %>
     </dl>
@@ -26,9 +26,9 @@
       <% customer.credit_card_charges.each do |credit_card_charge| %>
         <% if credit_card_charge.disputed? %>
           <dt>Amount Charged:</dt>
-          <dd>$<%= credit_card_charge.amount %></dd>
+          <dd><%= number_to_currency(credit_card_charge.amount) %></dd>
           <dt>Charge Date:</dt>
-          <dd><%= credit_card_charge.created %></dd>
+          <dd><%= credit_card_charge.created.strftime('%m/%d/%Y %H:%M') %></dd>
         <% end %>
       <% end %>
     </dl>
@@ -44,9 +44,9 @@
       <% customer.credit_card_charges.each do |credit_card_charge| %>
         <% if credit_card_charge.paid? %>
           <dt>Amount Charged:</dt>
-          <dd>$<%= credit_card_charge.amount %></dd>
+          <dd><%= number_to_currency(credit_card_charge.amount) %></dd>
           <dt>Charge Date:</dt>
-          <dd><%= credit_card_charge.created %></dd>
+          <dd><%= credit_card_charge.created.strftime('%m/%d/%Y %H:%M') %></dd>
           <dt>Currency</dt>
           <dd><%= credit_card_charge.currency %></dd>
           <dd><%= link_to 'Show', credit_card_charge %></dd>
