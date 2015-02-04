@@ -1,32 +1,38 @@
 
+<div class="panel panel-default">
   <h1>Failed Charges</h1>
   <% @customers.each do |customer| %>
-    <dl class="dl-horizontal failed-charges">
+    <dl class="dl-horizontal ">
       <dt><h4>Name:</h4></dt>
       <dd><h4><%= customer.first_name %> <%= customer.last_name %></h4></dd>
       <% customer.credit_card_charges.each do |credit_card_charge| %>
         <% if credit_card_charge.paid = true %>
+        <div class='panel failed-charges'>
           <dt>Amount Charged:</dt>
           <dd><%= number_to_currency(credit_card_charge.amount) %></dd>
           <dt>Charge Date:</dt>
           <dd><%= credit_card_charge.created.strftime('%m/%d/%Y %H:%M') %></dd>
+        </div>
         <% end %>
       <% end %>
     </dl>
   <% end %>
+</div>
 
 <div class="panel panel-default">
   <h1>Disputed Charges</h1>
   <% @customers.each do |customer| %>
-    <dl class="dl-horizontal disputed-charges">
+    <dl class="dl-horizontal">
       <dt><h4>Name:</h4></dt>
       <dd><h4><%= customer.first_name %> <%= customer.last_name %></h4></dd>
       <% customer.credit_card_charges.each do |credit_card_charge| %>
         <% if credit_card_charge.disputed? %>
+        <div class="panel disputed-charges">
           <dt>Amount Charged:</dt>
           <dd><%= number_to_currency(credit_card_charge.amount) %></dd>
           <dt>Charge Date:</dt>
           <dd><%= credit_card_charge.created.strftime('%m/%d/%Y %H:%M') %></dd>
+        </div>
         <% end %>
       <% end %>
     </dl>
@@ -41,6 +47,7 @@
       <dd><h4><%= customer.first_name %> <%= customer.last_name %></h4></dd>
       <% customer.credit_card_charges.each do |credit_card_charge| %>
         <% if credit_card_charge.paid? %>
+        <div class='well'>
           <dt>Amount Charged:</dt>
           <dd><%= number_to_currency(credit_card_charge.amount) %></dd>
           <dt>Charge Date:</dt>
@@ -49,6 +56,7 @@
           <dd><%= credit_card_charge.currency %></dd>
           <dd><%= link_to 'Show', credit_card_charge %></dd>
           <dd><%= link_to 'Destroy', credit_card_charge, method: :delete, data: { confirm: 'Are you sure?' } %></dd>
+        </div>
         <% end %>
       <% end %>
     </dl>
