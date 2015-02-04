@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'credit_card_charges#index'
   resources :credit_card_charges
 
+  get '/credit_cart_charges/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
